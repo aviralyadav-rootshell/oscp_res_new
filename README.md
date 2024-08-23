@@ -23,8 +23,8 @@ This repository is crafted for those who are on the path to becoming an OSCP cer
 To clone this repository to your local machine, use:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/aviralyadav-rootshell/oscp_res_new.git
+cd oscp_res_new
 ```
 
 ### Dependencies
@@ -33,16 +33,15 @@ Ensure you have the following tools and dependencies installed:
 
 - **Kali Linux** or another penetration testing distribution
 - **Python** (for script execution)
-- **Common pentesting tools** (e.g., `nmap`, `netcat`, `burpsuite`)
 
 ### Usage
 
 To make the most out of these resources:
 
-1. **Explore the Tools**: Navigate through the `/tools` directory for essential scripts and utilities.
-2. **Read the Notes**: Check the `/notes` folder for detailed write-ups, techniques, and methodologies.
-3. **Run the Scripts**: Execute the scripts found in the `/scripts` directory for automated testing and enumeration.
-4. **Study the Exploits**: Review the `/exploits` directory for practical examples and payloads.
+1. **Explore the Tools**: Navigate through the  directory for essential scripts and utilities.
+2. **Read the Notes**: Check the  folder for detailed write-ups, techniques, and methodologies.
+3. **Run the Scripts**: Execute the scripts found in the  directory for automated testing and enumeration.
+4. **Study the Exploits**: Review the  directory for practical examples and payloads.
 
 ### Example Commands
 
