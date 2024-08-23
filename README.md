@@ -59,10 +59,10 @@ python exploit_script.py -t <target-ip> -p <port>
 
 ## ✨ Repository Structure
 
-- **`/tools`**: Collection of useful penetration testing tools and utilities.
-- **`/notes`**: Detailed notes on various aspects of the OSCP exam, including methodologies and best practices.
-- **`/scripts`**: Automated scripts for common tasks and exploits.
-- **`/exploits`**: Example exploits and payloads used in the OSCP exam.
+- **`/ad-tools`**: Collection of useful penetration testing tools and utilities for AD env.
+- **`/pri_esc`**:Tools for privilege escalation, Post exploit enumration.
+- **`/Pivot`**: Tools for Pivoting to internal networks.
+- **`/pri_esc/windows/exploits`**: Example exploits and payloads used in the OSCP exam.
 
 ## 🤝 Contributing
 
