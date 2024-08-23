@@ -1,0 +1,29 @@
+
+## Update after cloning to new dir
+```
+git clone --branch main https://github.com/aviralyadav-rootshell/oscp_res_new.git
+cd oscp_res_new
+<<do changes>>
+git status
+git add .
+git status
+git commit -m "cleaned"
+git push origin main 
+[<username> : <key>]
+
+
+
+### Normal change/update pull
+```
+<<make changes>>
+git status
+git add .
+git status
+git commit -m "testing"
+git push origin main   or git push origin master
+[<username> : <key>]
+
+
+### Download repo
+```
+git clone https://github.com/aviralyadav-rootshell/oscp_res_new.git
